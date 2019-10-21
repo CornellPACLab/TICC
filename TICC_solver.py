@@ -55,7 +55,11 @@ class TICC:
         self.log_parameters()
 
         # Get data into proper format
-        times_series_arr, time_series_rows_size, time_series_col_size = self.load_data(input_file)
+        # times_series_arr, time_series_rows_size, time_series_col_size = self.load_data(input_file)
+
+        # Assume pandas DataFrame
+        times_series_arr = input_file.values
+        time_series_rows_size, time_series_col_size = times_series_arr.shape
 
         ############
         # The basic folder to be created
@@ -362,6 +366,7 @@ class TICC:
         Data = np.loadtxt(input_file, delimiter=",")
         (m, n) = Data.shape  # m: num of observations, n: size of observation vector
         print("completed getting the data")
+        print(m, n)
         return Data, m, n
 
     def log_parameters(self):
